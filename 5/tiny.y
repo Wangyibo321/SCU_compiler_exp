@@ -259,7 +259,7 @@ void printTree( TreeNode * tree )
   INDENT;
   while (tree != NULL) {
     printSpaces();
-    if (tree->nodekind==StmtK)
+    if (tree->nodekind==StmtK)  /*匹配statement的类型*/
     { 
 		switch (tree->kind.stmt) {
         case IfK:
@@ -282,7 +282,7 @@ void printTree( TreeNode * tree )
           break;
       }
     }
-    else if (tree->nodekind==ExpK)
+    else if (tree->nodekind==ExpK) /*exp*/
     { 
 		switch (tree->kind.exp) {
         case OpK:
@@ -302,8 +302,8 @@ void printTree( TreeNode * tree )
     }
     else  printf( "Unknown node kind\n");
     for (i=0;i<MAXCHILDREN;i++)
-         printTree(tree->child[i]);
-    tree = tree->sibling;
+         printTree(tree->child[i]);  /*递归打印子节点*/
+    tree = tree->sibling;  /*指向下一个结点*/
   }
   UNINDENT;  
 }
